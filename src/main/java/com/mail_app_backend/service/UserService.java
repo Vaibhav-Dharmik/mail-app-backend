@@ -7,5 +7,6 @@ public interface UserService {
     UserDto createUser(UserDto User);
     UserDto loginUser(LoginRequest loginRequest);
     UserDto getUserProfile(String email);
+    UserDto updateUserProfile(UserDto userDto);
 
 }

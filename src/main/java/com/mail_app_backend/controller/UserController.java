@@ -47,5 +47,14 @@ public class UserController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateUserProfile(@RequestBody UserDto userDto) {
+        UserDto updatedUser = userService.updateUserProfile(userDto);
+        if (updatedUser == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    }
+
 
 }

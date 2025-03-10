@@ -50,4 +50,25 @@ public class UserServiceImpl implements UserService {
         return UserMapper.mapToUserDto(user);
     }
 
+    @Override
+    public UserDto updateUserProfile(UserDto userDto) {
+        User existingUser = userRepository.findByEmail(userDto.getEmail());
+
+        if (existingUser == null) {
+            return null;
+        }
+
+        // Update only the necessary fields (excluding email)
+        existingUser.setFirstName(userDto.getFirstName());
+        existingUser.setLastName(userDto.getLastName());
+        existingUser.setUsername(userDto.getUsername());
+
+        // Save the updated user
+        User updatedUser = userRepository.save(existingUser);
+
+        // Return the updated user as DTO
+        return UserMapper.mapToUserDto(updatedUser);
+    }
+
+
 }
