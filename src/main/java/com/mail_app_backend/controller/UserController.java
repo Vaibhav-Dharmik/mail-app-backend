@@ -98,7 +98,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-//@CrossOrigin // Allow frontend to access backend
+@CrossOrigin // Allow frontend to access backend
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
