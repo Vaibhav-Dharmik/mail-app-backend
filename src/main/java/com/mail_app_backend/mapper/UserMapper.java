@@ -9,16 +9,21 @@ public class UserMapper {
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getEmail()
+                user.getEmail(),
+                user.getUsername()
         );
     }
-
-    public static User mapToUser(UserDto userDto){
+    // Maps UserDto to User entity (excluding password, role, and profile picture)
+    public static User mapToUser(UserDto userDto) {
         return new User(
                 userDto.getId(),
                 userDto.getFirstName(),
                 userDto.getLastName(),
-                userDto.getEmail()
+                userDto.getEmail(),
+                userDto.getUsername(),
+                null, // password will be handled separately
+                "user", // default role
+                null  // profile picture
         );
     }
 }

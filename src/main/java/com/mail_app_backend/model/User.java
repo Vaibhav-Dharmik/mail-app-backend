@@ -24,5 +24,14 @@ public class User {
     private String lastName;
     @Column(name = "email_id", nullable = false,unique = true)
     private String email;
+    @Column(name = "username",nullable = false,unique = true)
+    private String username;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "role")
+    private String role = "user";
+    @Column(name = "profile_pic")
+    private String profilePicture;
+
 
 }
