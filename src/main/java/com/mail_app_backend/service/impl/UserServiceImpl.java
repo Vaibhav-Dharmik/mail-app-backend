@@ -40,4 +40,14 @@ public class UserServiceImpl implements UserService {
         }
         return UserMapper.mapToUserDto(user);
     }
+
+    @Override
+    public UserDto getUserProfile(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return null;
+        }
+        return UserMapper.mapToUserDto(user);
+    }
+
 }

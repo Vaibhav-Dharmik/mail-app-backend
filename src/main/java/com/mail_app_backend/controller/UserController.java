@@ -6,10 +6,7 @@ import com.mail_app_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -40,5 +37,15 @@ public class UserController {
         // For now, just return a success response
         return new ResponseEntity<>("User logged out successfully", HttpStatus.OK);
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getUserProfile(@RequestParam String email) {
+        UserDto userDto = userService.getUserProfile(email);
+        if (userDto == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
 
 }
