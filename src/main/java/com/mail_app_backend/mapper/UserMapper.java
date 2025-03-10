@@ -10,7 +10,8 @@ public class UserMapper {
                 user.getFirstName(),
                 user.getLastName(),
                 user.getEmail(),
-                user.getUsername()
+                user.getUsername(),
+                user.getPassword()
         );
     }
     // Maps UserDto to User entity (excluding password, role, and profile picture)

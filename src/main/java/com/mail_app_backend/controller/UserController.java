@@ -1,8 +1,8 @@
 package com.mail_app_backend.controller;
 
+import com.mail_app_backend.model.dto.LoginRequest;
 import com.mail_app_backend.model.dto.UserDto;
 import com.mail_app_backend.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,20 @@ public class UserController {
 
 //    @PostMapping("/login")
 //    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
-//        // handle user login
-//        return null;
+//        User user = userRepository.findByEmail(loginRequest.getEmail());
+//        if(user == null || !user.getPassword().equals(loginRequest.getPassword())) {
+//            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+//        }
+//        return new ResponseEntity<>(UserMapper.mapToUserDto(user), HttpStatus.OK);
 //    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        UserDto userDto = userService.loginUser(loginRequest);
+        if(userDto == null) {
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+        }
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
 
 }
