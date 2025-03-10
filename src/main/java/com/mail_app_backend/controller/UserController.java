@@ -25,15 +25,6 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
-//        User user = userRepository.findByEmail(loginRequest.getEmail());
-//        if(user == null || !user.getPassword().equals(loginRequest.getPassword())) {
-//            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
-//        }
-//        return new ResponseEntity<>(UserMapper.mapToUserDto(user), HttpStatus.OK);
-//    }
-
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
         UserDto userDto = userService.loginUser(loginRequest);
@@ -41,6 +32,13 @@ public class UserController {
             return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
         }
         return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser() {
+        // Clear any user session (if using sessions)
+        // For now, just return a success response
+        return new ResponseEntity<>("User logged out successfully", HttpStatus.OK);
     }
 
 }
